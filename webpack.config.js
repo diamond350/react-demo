@@ -40,7 +40,7 @@ module.exports={
     },
     devServer: {
         //出口文件的位置
-        publicPath: "/static/",
+        publicPath: "/",
         stats: {colors: true},
         port: 8080,
         //浏览器输出内容的位置
