@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 // 定义一个组件，通过React.Children 拿到组件里面的子元素
 class ListComponent extends Component {
     render(){
-        console.log(this);
         return <ul>
             {
                 React.Children.map( this.props.children, function(c){

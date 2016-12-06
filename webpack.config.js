@@ -21,7 +21,7 @@ module.exports={
         loaders: [
             //6.1 对es6语法预解析
             {
-                test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"
+                test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel-loader'],
             },
             //6.2 样式解析
             {

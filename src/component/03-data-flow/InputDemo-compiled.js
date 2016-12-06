@@ -18,73 +18,51 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// 定义一个组件，通过React.Children 拿到组件里面的子元素
-var ListComponent = function (_Component) {
-    _inherits(ListComponent, _Component);
+var InputDemo = function (_Component) {
+    _inherits(InputDemo, _Component);
 
-    function ListComponent() {
-        _classCallCheck(this, ListComponent);
+    function InputDemo() {
+        _classCallCheck(this, InputDemo);
 
-        return _possibleConstructorReturn(this, (ListComponent.__proto__ || Object.getPrototypeOf(ListComponent)).apply(this, arguments));
+        //设置value初始值
+        var _this = _possibleConstructorReturn(this, (InputDemo.__proto__ || Object.getPrototypeOf(InputDemo)).call(this));
+
+        _this.state = { value: "默认值 " };
+        //用es5写方法，在外部调用时会有this指向问题,使用es6箭头函数的话 this始终指向类实例
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        // this.handleChange = this.handleChange.bind(this);
+        return _this;
     }
+    /*handleChange(event){
+        console.log(event);
+        this.setState({value:event.target.value});
+    }*/
 
-    _createClass(ListComponent, [{
+    _createClass(InputDemo, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(event) {
+            alert('A name was submitted: ' + this.state.value);
+            event.preventDefault();
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'ul',
-                null,
-                _react2.default.Children.map(this.props.children, function (c) {
-                    return _react2.default.createElement(
-                        'li',
-                        null,
-                        c
-                    );
-                })
+                'form',
+                { onSubmit: this.handleSubmit },
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    _react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleChange })
+                ),
+                _react2.default.createElement('input', { type: 'submit', value: '\u63D0\u4EA4' })
             );
         }
     }]);
 
-    return ListComponent;
+    return InputDemo;
 }(_react.Component);
 
-var UseChildrenComponent = function (_Component2) {
-    _inherits(UseChildrenComponent, _Component2);
+exports.default = InputDemo;
 
-    function UseChildrenComponent() {
-        _classCallCheck(this, UseChildrenComponent);
-
-        return _possibleConstructorReturn(this, (UseChildrenComponent.__proto__ || Object.getPrototypeOf(UseChildrenComponent)).apply(this, arguments));
-    }
-
-    _createClass(UseChildrenComponent, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                ListComponent,
-                null,
-                _react2.default.createElement(
-                    'a',
-                    { href: '#' },
-                    'Facebook'
-                ),
-                _react2.default.createElement(
-                    'a',
-                    { href: '#' },
-                    'Google'
-                ),
-                _react2.default.createElement(
-                    'a',
-                    { href: '#' },
-                    'SpaceX'
-                )
-            );
-        }
-    }]);
-
-    return UseChildrenComponent;
-}(_react.Component);
-
-exports.default = UseChildrenComponent;
-
-//# sourceMappingURL=ChildrenDemo-compiled.js.map
+//# sourceMappingURL=InputDemo-compiled.js.map
